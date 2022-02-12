@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from email import header
 from ensurepip import bootstrap
 import time
@@ -53,7 +54,8 @@ def get_recipes():
         if r.status_code == 200:
             html = r.text
             soup = BeautifulSoup(html, 'lxml')
-            links = soup.select('.fixed-recipe-card__h3 a')
+            links = soup.select('.card__detailsContainer-left a')
+            print(links)
             idx = 0
             for link in links:
 

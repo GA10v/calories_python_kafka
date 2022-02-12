@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import json
 import time
 from bs4 import BeautifulSoup
@@ -16,17 +17,16 @@ def parse(markup):
     try:
 
         soup = BeautifulSoup(markup, 'lxml')
-        # title
-        title_section = soup.select('.recipe-summary__h1')
-        # submitter
-        submitter_section = soup.select('.submitter__name')
-        # description
-        description_section = soup.select('.submitter__description')
-        # ingredients
-        ingredients_section = soup.select('.recipe-ingred_txt')
-
-        # calories
-        calories_section = soup.select('.calorie-count')
+        # название рецепта
+        title_section = soup.select('.headline heading-content elementFont__display')
+        # автор рецепта
+        submitter_section = soup.select('.author-name author-text__block elementFont__detailsLinkOnly--underlined elementFont__details--bold')
+        # описание рецепта
+        description_section = soup.select('.margin-0-auto')
+        # инградиенты
+        ingredients_section = soup.select('.ringredients-item-name elementFont__body')
+        # каллории
+        calories_section = soup.select('.semi-bold')
         if calories_section:
             calories = calories_section[0].text.replace('cals', '').strip()
 
